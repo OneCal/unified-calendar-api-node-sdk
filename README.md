@@ -32,10 +32,10 @@ pnpm add unified-calendar-api-node-sdk
 ## Quick Start
 
 ```typescript
-import { OneCal } from 'unified-calendar-api-node-sdk';
+import { UnifiedCalendarApi } from 'unified-calendar-api-node-sdk';
 
 // Initialize the client
-const client = new OneCal({
+const client = new UnifiedCalendarApi({
   apiKey: 'your-api-key-here'
 });
 
@@ -64,8 +64,8 @@ console.log(`Created event: ${event.title}`);
 ## Configuration
 
 ```typescript
-const client = new OneCal({
-  apiKey: 'your-api-key',           // Required: Your OneCal API key
+const client = new UnifiedCalendarApi({
+  apiKey: 'your-api-key',           // Required: Your Unified Calendar API key
   baseURL: 'https://api.onecalunified.com', // Optional: API base URL
   timeout: 30000,                    // Optional: Request timeout in ms
   debug: false                       // Optional: Enable debug logging
@@ -279,7 +279,7 @@ The SDK provides specific error types for different scenarios:
 
 ```typescript
 import {
-  OneCalError,
+  UnifiedCalendarApiError,
   APIRequestError,
   AuthenticationError,
   AuthorizationError,

@@ -1,22 +1,22 @@
 /**
- * Custom error classes for the OneCal SDK
+ * Custom error classes for the UnifiedCalendarApi SDK
  */
 
 /**
- * Base error class for all OneCal SDK errors
+ * Base error class for all UnifiedCalendarApi SDK errors
  */
-export class OneCalError extends Error {
+export class UnifiedCalendarApiError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'OneCalError';
-    Object.setPrototypeOf(this, OneCalError.prototype);
+    this.name = 'UnifiedCalendarApiError';
+    Object.setPrototypeOf(this, UnifiedCalendarApiError.prototype);
   }
 }
 
 /**
  * Error thrown when an API request fails
  */
-export class APIRequestError extends OneCalError {
+export class APIRequestError extends UnifiedCalendarApiError {
   public readonly status: number;
   public readonly code?: string;
   public readonly details?: Record<string, any>;
@@ -39,7 +39,7 @@ export class APIRequestError extends OneCalError {
 /**
  * Error thrown when input validation fails
  */
-export class ValidationError extends OneCalError {
+export class ValidationError extends UnifiedCalendarApiError {
   public readonly errors: Record<string, string>;
 
   constructor(message: string, errors: Record<string, string> = {}) {

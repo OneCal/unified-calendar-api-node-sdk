@@ -1,15 +1,15 @@
 /**
- * Tests for OneCal main client
+ * Tests for Unified Calendar API main client
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { OneCalUnifiedCalendarApi } from '../../src/client/OneCalUnifiedCalendarApi';
+import { UnifiedCalendarApi } from '../../src/client/UnifiedCalendarApi';
 
-describe('OneCal', () => {
-  let client: OneCalUnifiedCalendarApi;
+describe('UnifiedCalendarApi', () => {
+  let client: UnifiedCalendarApi;
 
   beforeEach(() => {
-    client = new OneCalUnifiedCalendarApi({ apiKey: 'test-api-key' });
+    client = new UnifiedCalendarApi({ apiKey: 'test-api-key' });
   });
 
   describe('constructor', () => {

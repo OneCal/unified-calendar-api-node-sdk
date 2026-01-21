@@ -1,14 +1,22 @@
 /**
- * Quick Start Example for OneCal SDK
+ * Quick Start Example for Unified Calendar API SDK
  */
 
-import { OneCalUnifiedCalendarApi, EventOrderBy, getOAuthUrl } from '../src';
+import { config } from 'dotenv';
+import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl } from '../src';
+
+config();
 
 async function main() {
+  if (!process.env.UNIFIED_API_KEY) {
+    console.error('UNIFIED_API_KEY environment variable is not set');
+    process.exit(1);
+  }
+
   // Initialize the client
-  const client = new OneCalUnifiedCalendarApi({
-    apiKey: process.env.ONECAL_API_KEY || 'your-api-key-here',
-    debug: true, // Enable debug logging
+  const client = new UnifiedCalendarApi({
+    apiKey: process.env.UNIFIED_API_KEY,
+    baseURL: process.env.UNIFIED_API_BASE_URL,
   });
 
   try {

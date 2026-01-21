@@ -6,7 +6,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import axios from 'axios';
 import { BaseClient } from '../../src/client/BaseClient';
 import {
-  OneCalError,
+  UnifiedCalendarApiError,
 } from '../../src/utils/errors';
 
 vi.mock('axios');
@@ -33,7 +33,7 @@ describe('BaseClient', () => {
 
   describe('constructor', () => {
     it('should throw error if API key is not provided', () => {
-      expect(() => new BaseClient({ apiKey: '' })).toThrow(OneCalError);
+      expect(() => new BaseClient({ apiKey: '' })).toThrow(UnifiedCalendarApiError);
       expect(() => new BaseClient({ apiKey: '' })).toThrow('API key is required');
     });
 

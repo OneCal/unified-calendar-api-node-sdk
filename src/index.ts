@@ -1,13 +1,13 @@
 /**
- * OneCal Unified Calendar API - Node.js SDK
- * 
- * Official TypeScript/JavaScript client for the OneCal Unified Calendar API
- * 
+ * Unified Calendar API - Node.js SDK
+ *
+ * Official TypeScript/JavaScript client for the Unified Calendar API
+ *
  * @packageDocumentation
  */
 
 // Main client
-export { OneCalUnifiedCalendarApi } from './client/OneCalUnifiedCalendarApi';
+export { UnifiedCalendarApi } from './client/UnifiedCalendarApi';
 
 // Export all types
 export * from './types';

@@ -1,10 +1,10 @@
 /**
- * Core types for the OneCal Unified Calendar API SDK
+ * Core types for the Unified Calendar API SDK
  */
 
-export interface OneCalConfig {
+export interface UnifiedCalendarApiConfig {
   /**
-   * Your OneCal API key (required)
+   * Your Unified Calendar API key (required)
    */
   apiKey: string;
 
@@ -17,11 +17,6 @@ export interface OneCalConfig {
    * Request timeout in milliseconds (default: 30000)
    */
   timeout?: number;
-
-  /**
-   * Enable debug logging
-   */
-  debug?: boolean;
 }
 
 export interface PaginationParams {

@@ -4,7 +4,7 @@
 
 import { describe, it, expect } from 'vitest';
 import {
-  OneCalError,
+  UnifiedCalendarApiError,
   APIRequestError,
   ValidationError,
   AuthenticationError,
@@ -14,13 +14,13 @@ import {
 } from '../../src/utils/errors';
 
 describe('Error Classes', () => {
-  describe('OneCalError', () => {
+  describe('UnifiedCalendarApiError', () => {
     it('should create base error', () => {
-      const error = new OneCalError('Something went wrong');
+      const error = new UnifiedCalendarApiError('Something went wrong');
       expect(error).toBeInstanceOf(Error);
-      expect(error).toBeInstanceOf(OneCalError);
+      expect(error).toBeInstanceOf(UnifiedCalendarApiError);
       expect(error.message).toBe('Something went wrong');
-      expect(error.name).toBe('OneCalError');
+      expect(error.name).toBe('UnifiedCalendarApiError');
     });
   });
 
@@ -29,7 +29,7 @@ describe('Error Classes', () => {
       const error = new APIRequestError('Request failed', 500, 'SERVER_ERROR', {
         detail: 'Internal error',
       });
-      expect(error).toBeInstanceOf(OneCalError);
+      expect(error).toBeInstanceOf(UnifiedCalendarApiError);
       expect(error).toBeInstanceOf(APIRequestError);
       expect(error.message).toBe('Request failed');
       expect(error.status).toBe(500);
@@ -53,7 +53,7 @@ describe('Error Classes', () => {
         name: 'Name is required',
       };
       const error = new ValidationError('Validation failed', errors);
-      expect(error).toBeInstanceOf(OneCalError);
+      expect(error).toBeInstanceOf(UnifiedCalendarApiError);
       expect(error).toBeInstanceOf(ValidationError);
       expect(error.message).toBe('Validation failed');
       expect(error.errors).toEqual(errors);

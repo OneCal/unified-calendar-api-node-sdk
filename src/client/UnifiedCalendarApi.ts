@@ -1,5 +1,5 @@
 /**
- * Main OneCal SDK client
+ * Main Unified Calendar API SDK client
  */
 
 import { BaseClient } from './BaseClient';
@@ -8,12 +8,12 @@ import { Events } from '../resources/Events';
 import { EndUserAccounts } from '../resources/EndUserAccounts';
 import { FreeBusy } from '../resources/FreeBusy';
 import { CalendarSubscriptions } from '../resources/CalendarSubscriptions';
-import { OneCalConfig } from '../types';
+import { UnifiedCalendarApiConfig } from '../types';
 
 /**
- * OneCal Unified Calendar API Client
+ * Unified Calendar API Client
  */
-export class OneCalUnifiedCalendarApi {
+export class UnifiedCalendarApi {
   private baseClient: BaseClient;
 
   /** Calendar operations */
@@ -32,10 +32,10 @@ export class OneCalUnifiedCalendarApi {
   public readonly calendarSubscriptions: CalendarSubscriptions;
 
   /**
-   * Create a new OneCal client
+   * Create a new Unified Calendar API client
    * @param config - Configuration options
    */
-  constructor(config: OneCalConfig) {
+  constructor(config: UnifiedCalendarApiConfig) {
     this.baseClient = new BaseClient(config);
 
     this.calendars = new Calendars(this.baseClient);

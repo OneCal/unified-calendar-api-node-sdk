@@ -3,23 +3,24 @@
  */
 
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { OneCalConfig } from '../types';
+import { UnifiedCalendarApiConfig } from '../types';
 import {
-  OneCalError,
+  UnifiedCalendarApiError,
   APIRequestError,
   AuthenticationError,
   AuthorizationError,
   NotFoundError,
   RateLimitError,
 } from '../utils/errors';
+import { logger } from '../utils/logger';
 
 export class BaseClient {
   private client: AxiosInstance;
-  private config: OneCalConfig;
+  private config: UnifiedCalendarApiConfig;
 
-  constructor(config: OneCalConfig) {
+  constructor(config: UnifiedCalendarApiConfig) {
     if (!config.apiKey) {
-      throw new OneCalError('API key is required');
+      throw new UnifiedCalendarApiError('API key is required');
     }
 
     this.config = {
@@ -44,16 +45,11 @@ export class BaseClient {
   private setupInterceptors() {
     this.client.interceptors.request.use(
       (config) => {
-        if (this.config.debug) {
-          console.log(
-            '[OneCal SDK] Request:',
-            config.method?.toUpperCase(),
-            config.url
-          );
-          if (config.data) {
-            console.log('[OneCal SDK] Request body:', config.data);
-          }
-        }
+        logger.debug('API Request', {
+          method: config.method?.toUpperCase(),
+          url: config.url,
+          data: config.data,
+        });
         return config;
       },
       (error) => Promise.reject(error)
@@ -61,15 +57,19 @@ export class BaseClient {
 
     this.client.interceptors.response.use(
       (response) => {
-        if (this.config.debug) {
-          console.log('[OneCal SDK] Response:', response.status, response.statusText);
-        }
+        logger.debug('API Response', {
+          status: response.status,
+          statusText: response.statusText,
+          url: response.config.url,
+        });
         return response;
       },
       (error) => {
-        if (this.config.debug) {
-          console.error('[OneCal SDK] Error:', error.message);
-        }
+        logger.error('API Error', {
+          message: error.message,
+          url: error.config?.url,
+          status: error.response?.status,
+        });
 
         if (error.response) {
           const status = error.response.status;
@@ -96,7 +96,7 @@ export class BaseClient {
           }
         }
 
-        throw new OneCalError(error.message || 'Network error');
+        throw new UnifiedCalendarApiError(error.message || 'Network error');
       }
     );
   }

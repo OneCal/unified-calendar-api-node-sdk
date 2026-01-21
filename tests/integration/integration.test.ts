@@ -1,32 +1,27 @@
 /**
- * Integration tests for the OneCal SDK
+ * Integration tests for the Unified Calendar API SDK
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { OneCalUnifiedCalendarApi, EventOrderBy } from '../../src';
-import { config } from 'dotenv';
+import { UnifiedCalendarApi, EventOrderBy } from '../../src';
 
-// Load environment variables from .env file
-config();
-
-describe.skip('OneCalUnifiedCalendarApi SDK Integration Tests', () => {
-// describe('OneCalUnifiedCalendarApi SDK Integration Tests', () => {
-  let client: OneCalUnifiedCalendarApi;
+describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
+// describe('UnifiedCalendarApi SDK Integration Tests', () => {
+  let client: UnifiedCalendarApi;
   let testAccountId: string;
   let testCalendarId: string;
 
   beforeAll(() => {
-    const apiKey = process.env.ONECAL_API_KEY;
-    const baseURL = process.env.ONECAL_BASE_URL;
-    
+    const apiKey = process.env.UNIFIED_API_KEY;
+    const baseURL = process.env.UNIFIED_API_BASE_URL;
+
     if (!apiKey) {
-      throw new Error('ONECAL_API_KEY environment variable is required');
+      throw new Error('UNIFIED_API_KEY environment variable is required');
     }
     
-    client = new OneCalUnifiedCalendarApi({ 
+    client = new UnifiedCalendarApi({ 
       apiKey, 
       baseURL: baseURL || 'https://api.onecalunified.com',
-      debug: true 
     });
   });
 
