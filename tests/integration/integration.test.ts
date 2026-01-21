@@ -3,15 +3,15 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { OneCal, EventOrderBy } from '../../src';
+import { OneCalUnifiedCalendarApi, EventOrderBy } from '../../src';
 import { config } from 'dotenv';
 
 // Load environment variables from .env file
 config();
 
-describe.skip('OneCal SDK Integration Tests', () => {
-// describe('OneCal SDK Integration Tests', () => {
-  let client: OneCal;
+describe.skip('OneCalUnifiedCalendarApi SDK Integration Tests', () => {
+// describe('OneCalUnifiedCalendarApi SDK Integration Tests', () => {
+  let client: OneCalUnifiedCalendarApi;
   let testAccountId: string;
   let testCalendarId: string;
 
@@ -23,7 +23,7 @@ describe.skip('OneCal SDK Integration Tests', () => {
       throw new Error('ONECAL_API_KEY environment variable is required');
     }
     
-    client = new OneCal({ 
+    client = new OneCalUnifiedCalendarApi({ 
       apiKey, 
       baseURL: baseURL || 'https://api.onecalunified.com',
       debug: true 
@@ -118,10 +118,10 @@ describe.skip('OneCal SDK Integration Tests', () => {
         testAccountId,
         testCalendarId,
         eventId,
-        { title: 'Updated Test Event' }
+        { title: 'Updated SDK Test Event' }
       );
-      expect(updatedEvent.title).toBe('Updated Test Event');
-      
+      expect(updatedEvent.title).toBe('Updated SDK Test Event');
+
       // Delete
       await client.events.delete(testAccountId, testCalendarId, eventId);
     });
@@ -143,18 +143,6 @@ describe.skip('OneCal SDK Integration Tests', () => {
         expect(result[0]).toHaveProperty('calendarId');
         expect(result[0]).toHaveProperty('busySlots');
       }
-    });
-  });
-
-  describe('OAuth', () => {
-    it('should generate OAuth URL', () => {
-      const googleUrl = client.getOAuthUrl('test-app', 'GOOGLE', {
-        redirectUrl: 'https://example.com/callback',
-        externalId: 'user-123',
-      });
-      expect(googleUrl).toContain('/oauth/authorize/test-app/google');
-      expect(googleUrl).toContain('redirectUrl=');
-      expect(googleUrl).toContain('externalId=user-123');
     });
   });
 });

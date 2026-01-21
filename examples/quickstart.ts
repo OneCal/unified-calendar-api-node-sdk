@@ -2,18 +2,18 @@
  * Quick Start Example for OneCal SDK
  */
 
-import { OneCal, EventOrderBy } from '../src';
+import { OneCalUnifiedCalendarApi, EventOrderBy, getOAuthUrl } from '../src';
 
 async function main() {
   // Initialize the client
-  const client = new OneCal({
+  const client = new OneCalUnifiedCalendarApi({
     apiKey: process.env.ONECAL_API_KEY || 'your-api-key-here',
     debug: true, // Enable debug logging
   });
 
   try {
     // Example: List all end user accounts
-    console.log('\n📋 Listing end user accounts...');
+    console.log('\nListing end user accounts...');
     const accounts = await client.endUserAccounts.list({ limit: 10 });
     console.log(`Found ${accounts.data.length} accounts`);
 
@@ -22,7 +22,7 @@ async function main() {
       console.log(`\nFirst account: ${firstAccount.email} (${firstAccount.id})`);
 
       // Example: List calendars for the first account
-      console.log('\n📅 Listing calendars...');
+      console.log('\nListing calendars...');
       const calendars = await client.calendars.list(firstAccount.id);
       console.log(`Found ${calendars.data?.length || 0} calendars`);
 
@@ -31,7 +31,7 @@ async function main() {
         console.log(`First calendar: ${firstCalendar.name} (${firstCalendar.id})`);
 
         // Example: List events in the first calendar
-        console.log('\n🗓️  Listing events...');
+        console.log('\nListing events...');
         const events = await client.events.list(
           firstAccount.id,
           firstCalendar.id,
@@ -50,7 +50,7 @@ async function main() {
         }
 
         // Example: Create a new event
-        console.log('\n✨ Creating a new event...');
+        console.log('\nCreating a new event...');
         const newEvent = await client.events.create(
           firstAccount.id,
           firstCalendar.id,
@@ -76,7 +76,7 @@ async function main() {
         console.log(`Created event: ${newEvent.title} (${newEvent.id})`);
 
         // Example: Get free/busy information
-        console.log('\n⏰ Getting free/busy info...');
+        console.log('\nGetting free/busy info...');
         const freeBusy = await client.freeBusy.get(firstAccount.id, {
           startDateTime: new Date(),
           endDateTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Next 7 days
@@ -88,15 +88,15 @@ async function main() {
     }
 
     // Example: Get OAuth URL
-    console.log('\n🔐 OAuth URL for Google:');
-    const oauthUrl = client.getOAuthUrl('your-app-id', 'GOOGLE', {
+    console.log('\nOAuth URL for Google:');
+    const oauthUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
       redirectUrl: 'https://your-app.com/callback',
       externalId: 'user-123',
     });
     console.log(oauthUrl);
 
   } catch (error: any) {
-    console.error('\n❌ Error:', error.message);
+    console.error('\nError:', error.message);
     if (error.status) {
       console.error(`Status: ${error.status}`);
     }

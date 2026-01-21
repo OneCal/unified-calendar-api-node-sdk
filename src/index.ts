@@ -7,13 +7,16 @@
  */
 
 // Main client
-export { OneCal } from './client/OneCal';
+export { OneCalUnifiedCalendarApi } from './client/OneCalUnifiedCalendarApi';
 
 // Export all types
 export * from './types';
 
 // Export errors
 export * from './utils/errors';
+
+// Export OAuth utilities
+export * from './oauth';
 
 // Export resource classes for advanced usage
 export { Calendars } from './resources/Calendars';

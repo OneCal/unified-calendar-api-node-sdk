@@ -30,5 +30,4 @@ export interface UpdateCalendarInput {
 }
 
 export interface ListCalendarsParams extends PaginationParams {
-  // Additional calendar-specific filters can be added here
 }

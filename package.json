@@ -11,6 +11,11 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
+    },
+    "./oauth": {
+      "types": "./dist/oauth/index.d.ts",
+      "require": "./dist/oauth/index.js",
+      "import": "./dist/oauth/index.mjs"
     }
   },
   "files": [
@@ -18,8 +23,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts src/oauth/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts src/oauth/index.ts --format cjs,esm --dts --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

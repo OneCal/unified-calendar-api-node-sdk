@@ -13,7 +13,7 @@ import { OneCalConfig } from '../types';
 /**
  * OneCal Unified Calendar API Client
  */
-export class OneCal {
+export class OneCalUnifiedCalendarApi {
   private baseClient: BaseClient;
 
   /** Calendar operations */
@@ -43,40 +43,5 @@ export class OneCal {
     this.endUserAccounts = new EndUserAccounts(this.baseClient);
     this.freeBusy = new FreeBusy(this.baseClient);
     this.calendarSubscriptions = new CalendarSubscriptions(this.baseClient);
-  }
-
-  /**
-   * Get OAuth authorization URL
-   * @param appId - Your OneCal application ID
-   * @param provider - The provider type (GOOGLE or MICROSOFT)
-   * @param params - Optional OAuth parameters
-   * @returns The OAuth authorization URL
-   */
-  getOAuthUrl(
-    appId: string,
-    provider: 'GOOGLE' | 'MICROSOFT',
-    params?: {
-      redirectUrl?: string;
-      externalId?: string;
-      loginHint?: string;
-      prompt?: string;
-      state?: string;
-    }
-  ): string {
-    const baseUrl =
-      this.baseClient['config'].baseURL || 'https://api.onecalunified.com';
-    const queryParams = new URLSearchParams();
-
-    if (params?.redirectUrl)
-      queryParams.append('redirectUrl', params.redirectUrl);
-    if (params?.externalId) queryParams.append('externalId', params.externalId);
-    if (params?.loginHint) queryParams.append('loginHint', params.loginHint);
-    if (params?.prompt) queryParams.append('prompt', params.prompt);
-    if (params?.state) queryParams.append('state', params.state);
-
-    const queryString = queryParams.toString();
-    const url = `${baseUrl}/api/v1/oauth/authorize/${appId}/${provider.toLowerCase()}`;
-
-    return queryString ? `${url}?${queryString}` : url;
   }
 }

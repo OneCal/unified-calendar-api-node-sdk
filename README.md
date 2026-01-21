@@ -253,15 +253,18 @@ await client.calendarSubscriptions.delete('endUserAccountId', 'subscriptionId');
 Generate OAuth authorization URLs for connecting user calendars.
 
 ```typescript
+import { getOAuthUrl } from 'unified-calendar-api-node-sdk/oauth';
+
 // Get OAuth URL for Google
-const googleUrl = client.getOAuthUrl('your-app-id', 'GOOGLE', {
+const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
   redirectUrl: 'https://your-app.com/callback',
   externalId: 'user-123',
-  loginHint: 'user@example.com'
+  loginHint: 'user@example.com',
+  baseURL: 'https://api.onecalunified.com' // Optional: defaults to production
 });
 
 // Get OAuth URL for Microsoft
-const microsoftUrl = client.getOAuthUrl('your-app-id', 'MICROSOFT', {
+const microsoftUrl = getOAuthUrl('your-app-id', 'MICROSOFT', {
   redirectUrl: 'https://your-app.com/callback',
   externalId: 'user-456'
 });
