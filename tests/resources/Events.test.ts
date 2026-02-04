@@ -169,9 +169,7 @@ describe('Events', () => {
   describe('rsvp', () => {
     it('should RSVP to an event', async () => {
       const rsvpData = {
-        attendees: [
-          { email: 'user@example.com', responseStatus: 'accepted' as const },
-        ],
+        responseStatus: 'accepted' as const,
       };
       const mockResponse = { success: true };
       mockClient.post.mockResolvedValue(mockResponse);
