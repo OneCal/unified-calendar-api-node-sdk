@@ -198,9 +198,7 @@ const occurrences = await client.events.getOccurrences(
 
 // RSVP to an event
 await client.events.rsvp('endUserAccountId', 'calendarId', 'eventId', {
-  attendees: [
-    { email: 'you@example.com', responseStatus: 'accepted' }
-  ]
+  responseStatus: 'accepted'
 });
 ```
 

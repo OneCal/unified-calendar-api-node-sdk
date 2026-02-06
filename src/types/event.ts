@@ -308,6 +308,6 @@ export interface ListEventsParams extends PaginationParams {
 }
 
 export interface RSVPInput {
-  /** List of attendees with their response statuses */
-  attendees: EventAttendee[];
+  /** The user's response to the event invitation */
+  responseStatus: 'needsAction' | 'declined' | 'tentative' | 'accepted';
 }
