@@ -66,7 +66,7 @@ describe('getOAuthUrl', () => {
 
   it('should use custom baseURL if provided', () => {
     const url = getOAuthUrl('app123', 'GOOGLE', {
-      baseURL: 'https://custom.api.com',
+      unifiedApiBaseUrl: 'https://custom.api.com',
     });
     expect(url).toBe('https://custom.api.com/api/v1/oauth/authorize/app123/google');
   });
