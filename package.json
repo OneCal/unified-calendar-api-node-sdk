@@ -1,6 +1,6 @@
 {
   "name": "@onecal/unified-calendar-api-node-sdk",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Official Node.js SDK for OneCal Unified Calendar API - A type-safe client for managing calendars, events, and integrations across Google, Microsoft, and other providers",
   "type": "module",
   "main": "./dist/index.cjs",
