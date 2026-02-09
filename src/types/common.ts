@@ -52,6 +52,7 @@ export interface APIResponse<T> {
 export interface APIError {
   code?: string;
   message: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   details?: Record<string, any>;
   status?: number;
 }

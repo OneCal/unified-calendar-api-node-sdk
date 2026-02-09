@@ -19,12 +19,14 @@ export class UnifiedCalendarApiError extends Error {
 export class APIRequestError extends UnifiedCalendarApiError {
   public readonly status: number;
   public readonly code?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public readonly details?: Record<string, any>;
 
   constructor(
     message: string,
     status: number,
     code?: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     details?: Record<string, any>
   ) {
     super(message);

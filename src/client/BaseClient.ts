@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /**
  * Base HTTP client for making API requests
  */
@@ -24,7 +26,8 @@ export class BaseClient {
     }
 
     this.config = {
-      unifiedApiBaseUrl: config.unifiedApiBaseUrl || 'https://api.onecalunified.com',
+      unifiedApiBaseUrl:
+        config.unifiedApiBaseUrl || 'https://api.onecalunified.com',
       timeout: config.timeout || 30000,
       ...config,
     };
@@ -85,12 +88,13 @@ export class BaseClient {
               throw new AuthorizationError(message);
             case 404:
               throw new NotFoundError(message);
-            case 429:
+            case 429: {
               const retryAfter = error.response.headers['retry-after'];
               throw new RateLimitError(
                 message,
                 retryAfter ? parseInt(retryAfter, 10) : undefined
               );
+            }
             default:
               throw new APIRequestError(message, status, code, details);
           }
