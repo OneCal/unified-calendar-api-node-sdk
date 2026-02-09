@@ -19,10 +19,10 @@ export function getOAuthUrl(
     loginHint?: string;
     prompt?: string;
     state?: string;
-    baseURL?: string;
+    unifiedApiBaseUrl?: string;
   }
 ): string {
-  const baseUrl = params?.baseURL || 'https://api.onecalunified.com';
+  const baseUrl = params?.unifiedApiBaseUrl || 'https://api.onecalunified.com';
   const queryParams = new URLSearchParams();
 
   if (params?.redirectUrl)
