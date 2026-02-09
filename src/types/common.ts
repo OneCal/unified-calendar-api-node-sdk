@@ -11,7 +11,7 @@ export interface UnifiedCalendarApiConfig {
   /**
    * Base URL for the API (default: https://api.onecalunified.com)
    */
-  baseURL?: string;
+  unifiedApiBaseUrl?: string;
 
   /**
    * Request timeout in milliseconds (default: 30000)

@@ -24,13 +24,13 @@ export class BaseClient {
     }
 
     this.config = {
-      baseURL: config.baseURL || 'https://api.onecalunified.com',
+      unifiedApiBaseUrl: config.unifiedApiBaseUrl || 'https://api.onecalunified.com',
       timeout: config.timeout || 30000,
       ...config,
     };
 
     this.client = axios.create({
-      baseURL: this.config.baseURL,
+      baseURL: this.config.unifiedApiBaseUrl,
       timeout: this.config.timeout,
       headers: {
         'Content-Type': 'application/json',

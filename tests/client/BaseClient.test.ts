@@ -52,7 +52,7 @@ describe('BaseClient', () => {
     it('should use custom baseURL if provided', () => {
       new BaseClient({
         apiKey: 'test-key',
-        baseURL: 'https://custom.api.com',
+        unifiedApiBaseUrl: 'https://custom.api.com',
       });
 
       expect(axios.create).toHaveBeenCalledWith(

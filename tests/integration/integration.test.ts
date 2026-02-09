@@ -21,7 +21,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
     
     client = new UnifiedCalendarApi({ 
       apiKey, 
-      baseURL: baseURL || 'https://api.onecalunified.com',
+      unifiedApiBaseUrl: baseURL || 'https://api.onecalunified.com',
     });
   });
 

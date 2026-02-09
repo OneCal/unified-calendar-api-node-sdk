@@ -16,7 +16,7 @@ async function main() {
   // Initialize the client
   const client = new UnifiedCalendarApi({
     apiKey: process.env.UNIFIED_API_KEY,
-    baseURL: process.env.UNIFIED_API_BASE_URL,
+    unifiedApiBaseUrl: process.env.UNIFIED_API_BASE_URL,
   });
 
   try {

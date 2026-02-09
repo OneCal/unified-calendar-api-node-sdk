@@ -66,7 +66,7 @@ console.log(`Created event: ${event.title}`);
 ```typescript
 const client = new UnifiedCalendarApi({
   apiKey: 'your-api-key',           // Required: Your Unified Calendar API key
-  baseURL: 'https://api.onecalunified.com', // Optional: API base URL
+  unifiedApiBaseUrl: 'https://api.onecalunified.com', // Optional: API base URL
   timeout: 30000,                    // Optional: Request timeout in ms
   debug: false                       // Optional: Enable debug logging
 });
@@ -258,7 +258,7 @@ const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
   redirectUrl: 'https://your-app.com/callback',
   externalId: 'user-123',
   loginHint: 'user@example.com',
-  baseURL: 'https://api.onecalunified.com' // Optional: defaults to production
+  unifiedApiBaseUrl: 'https://api.onecalunified.com' // Optional: defaults to production
 });
 
 // Get OAuth URL for Microsoft

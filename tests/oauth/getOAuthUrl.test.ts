@@ -64,7 +64,7 @@ describe('getOAuthUrl', () => {
     expect(url).toContain('loginHint=');
   });
 
-  it('should use custom baseURL if provided', () => {
+  it('should use custom unifiedApiBaseUrl if provided', () => {
     const url = getOAuthUrl('app123', 'GOOGLE', {
       unifiedApiBaseUrl: 'https://custom.api.com',
     });
