@@ -14,25 +14,25 @@ Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://do
 ## Installation
 
 ```bash
-npm install unified-calendar-api-node-sdk
+npm install @onecal/unified-calendar-api-node-sdk
 ```
 
 Or using yarn:
 
 ```bash
-yarn add unified-calendar-api-node-sdk
+yarn add @onecal/unified-calendar-api-node-sdk
 ```
 
 Or using pnpm:
 
 ```bash
-pnpm add unified-calendar-api-node-sdk
+pnpm add @onecal/unified-calendar-api-node-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { UnifiedCalendarApi } from 'unified-calendar-api-node-sdk';
+import { UnifiedCalendarApi } from '@onecal/unified-calendar-api-node-sdk';
 
 // Initialize the client
 const client = new UnifiedCalendarApi({
@@ -251,7 +251,7 @@ await client.calendarSubscriptions.delete('endUserAccountId', 'subscriptionId');
 Generate OAuth authorization URLs for connecting user calendars.
 
 ```typescript
-import { getOAuthUrl } from 'unified-calendar-api-node-sdk/oauth';
+import { getOAuthUrl } from '@onecal/unified-calendar-api-node-sdk/oauth';
 
 // Get OAuth URL for Google
 const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
@@ -283,7 +283,7 @@ import {
   AuthorizationError,
   NotFoundError,
   RateLimitError
-} from 'unified-calendar-api-node-sdk';
+} from '@onecal/unified-calendar-api-node-sdk';
 
 try {
   const event = await client.events.get('accountId', 'calendarId', 'eventId');
@@ -315,7 +315,7 @@ import type {
   ListEventsParams,
   EventOrderBy,
   ProviderType
-} from 'unified-calendar-api-node-sdk';
+} from '@onecal/unified-calendar-api-node-sdk';
 ```
 
 ## Examples
@@ -358,5 +358,5 @@ npm run dev
 
 - [OneCal Unified API Website](https://www.onecal.io/unified-calendar-api)
 - [API Documentation](https://docs.onecalunified.com)
-- [NPM Package](https://www.npmjs.com/package/unified-calendar-api-node-sdk)
+- [NPM Package](https://www.npmjs.com/package/@onecal/unified-calendar-api-node-sdk)
 - [GitHub Repository](https://github.com/onecal-unified/unified-calendar-api-node-sdk)

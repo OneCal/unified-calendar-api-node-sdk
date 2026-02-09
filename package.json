@@ -1,7 +1,6 @@
 {
-  "name": "unified-calendar-api-node-sdk",
+  "name": "@onecal/unified-calendar-api-node-sdk",
   "version": "0.1.0",
-  "private": true,
   "description": "Official Node.js SDK for OneCal Unified Calendar API - A type-safe client for managing calendars, events, and integrations across Google, Microsoft, and other providers",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -51,6 +50,27 @@
   "engines": {
     "node": ">=16"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onecal-unified/unified-calendar-api-node-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onecal-unified/unified-calendar-api-node-sdk/issues"
+  },
+  "homepage": "https://github.com/onecal-unified/unified-calendar-api-node-sdk#readme",
+  "license": "MIT",
+  "keywords": [
+    "calendar",
+    "onecal",
+    "unified-calendar-api",
+    "google calendar api",
+    "microsoft calendar api",
+    "icloud calendar api",
+    "apple calendar api",
+    "sdk",
+    "typescript",
+    "nodejs"
+  ],
   "dependencies": {
     "axios": "^1.13.2",
     "winston": "^3.19.0",
