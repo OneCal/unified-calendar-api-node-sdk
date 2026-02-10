@@ -60,12 +60,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onecal-unified/unified-calendar-api-node-sdk.git"
+    "url": "git+https://github.com/OneCal/unified-calendar-api-node-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/onecal-unified/unified-calendar-api-node-sdk/issues"
+    "url": "https://github.com/OneCal/unified-calendar-api-node-sdk/issues"
   },
-  "homepage": "https://github.com/onecal-unified/unified-calendar-api-node-sdk#readme",
+  "homepage": "https://github.com/OneCal/unified-calendar-api-node-sdk#readme",
   "license": "MIT",
   "keywords": [
     "calendar",
