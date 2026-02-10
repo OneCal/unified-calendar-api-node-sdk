@@ -9,7 +9,7 @@ Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://do
 📦 **Modern** - ESM and CommonJS support  
 🚀 **Simple** - Intuitive, promise-based API  
 📚 **Well-Documented** - Extensive documentation and examples  
-🧪 **Tested** - Comprehensive test coverage  
+🧪 **Tested** - Comprehensive test coverage
 
 ## Installation
 
@@ -36,7 +36,7 @@ import { UnifiedCalendarApi } from '@onecal/unified-calendar-api-node-sdk';
 
 // Initialize the client
 const client = new UnifiedCalendarApi({
-  apiKey: 'your-api-key-here'
+  apiKey: 'your-api-key-here',
 });
 
 // List calendars
@@ -47,15 +47,13 @@ const event = await client.events.create('endUserAccountId', 'calendarId', {
   title: 'Team Meeting',
   start: {
     dateTime: '2026-01-20T10:00:00Z',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   },
   end: {
     dateTime: '2026-01-20T11:00:00Z',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   },
-  attendees: [
-    { email: 'team@example.com', name: 'Team Member' }
-  ]
+  attendees: [{ email: 'team@example.com', name: 'Team Member' }],
 });
 
 console.log(`Created event: ${event.title}`);
@@ -65,10 +63,10 @@ console.log(`Created event: ${event.title}`);
 
 ```typescript
 const client = new UnifiedCalendarApi({
-  apiKey: 'your-api-key',           // Required: Your Unified Calendar API key
+  apiKey: 'your-api-key', // Required: Your Unified Calendar API key
   unifiedApiBaseUrl: 'https://api.onecalunified.com', // Optional: API base URL
-  timeout: 30000,                    // Optional: Request timeout in ms
-  debug: false                       // Optional: Enable debug logging
+  timeout: 30000, // Optional: Request timeout in ms
+  debug: false, // Optional: Enable debug logging
 });
 ```
 
@@ -83,18 +81,18 @@ Manage end user accounts that connect to calendar providers.
 const accounts = await client.endUserAccounts.list({
   limit: 20,
   search: 'user@example.com',
-  statusFilter: 'active'
+  statusFilter: 'active',
 });
 
 // Get a specific account
 const account = await client.endUserAccounts.get('accountId');
 
 // Create a new account
-const newAccount = await client.endUserAccounts.create({
+const newAccount = await client.endUserAccounts.upsert({
   email: 'user@example.com',
   refreshToken: 'refresh-token',
   providerType: ProviderType.GOOGLE,
-  externalId: 'user-123'
+  externalId: 'user-123',
 });
 
 // Get account credentials (automatically refreshes if expired)
@@ -111,7 +109,7 @@ Manage calendars for end user accounts.
 ```typescript
 // List calendars
 const calendars = await client.calendars.list('endUserAccountId', {
-  pageSize: 20
+  pageSize: 20,
 });
 
 // Get a specific calendar
@@ -121,13 +119,17 @@ const calendar = await client.calendars.get('endUserAccountId', 'calendarId');
 const newCalendar = await client.calendars.create('endUserAccountId', {
   name: 'My Calendar',
   hexColor: '#FF5733',
-  timeZone: 'America/New_York'
+  timeZone: 'America/New_York',
 });
 
 // Update a calendar
-const updated = await client.calendars.update('endUserAccountId', 'calendarId', {
-  name: 'Updated Calendar Name'
-});
+const updated = await client.calendars.update(
+  'endUserAccountId',
+  'calendarId',
+  {
+    name: 'Updated Calendar Name',
+  }
+);
 
 // Delete a calendar
 await client.calendars.delete('endUserAccountId', 'calendarId');
@@ -144,11 +146,15 @@ const events = await client.events.list('endUserAccountId', 'calendarId', {
   endDateTime: new Date('2026-12-31'),
   search: 'meeting',
   orderBy: EventOrderBy.START_TIME,
-  pageSize: 50
+  pageSize: 50,
 });
 
 // Get a specific event
-const event = await client.events.get('endUserAccountId', 'calendarId', 'eventId');
+const event = await client.events.get(
+  'endUserAccountId',
+  'calendarId',
+  'eventId'
+);
 
 // Create an event
 const newEvent = await client.events.create('endUserAccountId', 'calendarId', {
@@ -156,31 +162,36 @@ const newEvent = await client.events.create('endUserAccountId', 'calendarId', {
   description: 'Launch event for new product',
   start: {
     dateTime: '2026-02-15T14:00:00Z',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   },
   end: {
     dateTime: '2026-02-15T16:00:00Z',
-    timeZone: 'UTC'
+    timeZone: 'UTC',
   },
   location: '123 Main St, San Francisco, CA',
   attendees: [
     { email: 'alice@example.com', name: 'Alice' },
-    { email: 'bob@example.com', name: 'Bob' }
+    { email: 'bob@example.com', name: 'Bob' },
   ],
   reminders: {
     useDefault: false,
     overrides: [
       { method: 'email', minutes: 24 * 60 }, // 1 day before
-      { method: 'popup', minutes: 30 }        // 30 minutes before
-    ]
-  }
+      { method: 'popup', minutes: 30 }, // 30 minutes before
+    ],
+  },
 });
 
 // Update an event
-const updated = await client.events.update('endUserAccountId', 'calendarId', 'eventId', {
-  title: 'Updated Event Title',
-  location: 'New Location'
-});
+const updated = await client.events.update(
+  'endUserAccountId',
+  'calendarId',
+  'eventId',
+  {
+    title: 'Updated Event Title',
+    location: 'New Location',
+  }
+);
 
 // Delete an event
 await client.events.delete('endUserAccountId', 'calendarId', 'eventId');
@@ -192,13 +203,13 @@ const occurrences = await client.events.getOccurrences(
   'recurringEventId',
   {
     startDateTime: new Date('2026-01-01'),
-    endDateTime: new Date('2026-03-31')
+    endDateTime: new Date('2026-03-31'),
   }
 );
 
 // RSVP to an event
 await client.events.rsvp('endUserAccountId', 'calendarId', 'eventId', {
-  responseStatus: 'accepted'
+  responseStatus: 'accepted',
 });
 ```
 
@@ -211,7 +222,7 @@ const freeBusy = await client.freeBusy.get('endUserAccountId', {
   startDateTime: new Date(),
   endDateTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Next 7 days
   timeZone: 'America/New_York',
-  calendarIds: ['calendar1', 'calendar2']
+  calendarIds: ['calendar1', 'calendar2'],
 });
 
 // Response is an array of FreeBusySlot objects
@@ -225,22 +236,29 @@ Subscribe to calendar event notifications via webhooks.
 
 ```typescript
 // List subscriptions
-const subscriptions = await client.calendarSubscriptions.list('endUserAccountId');
+const subscriptions =
+  await client.calendarSubscriptions.list('endUserAccountId');
 
 // Create a subscription for calendar events
-const subscription = await client.calendarSubscriptions.create('endUserAccountId', {
-  webhookUrl: 'https://your-app.com/webhooks',
-  calendarId: 'calendarId',
-  subscriptionType: 'event', // 'event' for calendar events, 'calendar' for calendar changes
-  rateLimit: 100 // Optional: requests per second limit
-});
+const subscription = await client.calendarSubscriptions.create(
+  'endUserAccountId',
+  {
+    webhookUrl: 'https://your-app.com/webhooks',
+    calendarId: 'calendarId',
+    subscriptionType: 'event', // 'event' for calendar events, 'calendar' for calendar changes
+    rateLimit: 100, // Optional: requests per second limit
+  }
+);
 // Returns: { webhookSubscriptionId: string, endpointSecret: string }
 
 // Create a subscription for calendar list changes
-const calendarSub = await client.calendarSubscriptions.create('endUserAccountId', {
-  webhookUrl: 'https://your-app.com/webhooks/calendars',
-  subscriptionType: 'calendar',
-});
+const calendarSub = await client.calendarSubscriptions.create(
+  'endUserAccountId',
+  {
+    webhookUrl: 'https://your-app.com/webhooks/calendars',
+    subscriptionType: 'calendar',
+  }
+);
 
 // Delete a subscription
 await client.calendarSubscriptions.delete('endUserAccountId', 'subscriptionId');
@@ -258,13 +276,13 @@ const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
   redirectUrl: 'https://your-app.com/callback',
   externalId: 'user-123',
   loginHint: 'user@example.com',
-  unifiedApiBaseUrl: 'https://api.onecalunified.com' // Optional: defaults to production
+  unifiedApiBaseUrl: 'https://api.onecalunified.com', // Optional: defaults to production
 });
 
 // Get OAuth URL for Microsoft
 const microsoftUrl = getOAuthUrl('your-app-id', 'MICROSOFT', {
   redirectUrl: 'https://your-app.com/callback',
-  externalId: 'user-456'
+  externalId: 'user-456',
 });
 
 // Redirect user to the OAuth URL
@@ -282,7 +300,7 @@ import {
   AuthenticationError,
   AuthorizationError,
   NotFoundError,
-  RateLimitError
+  RateLimitError,
 } from '@onecal/unified-calendar-api-node-sdk';
 
 try {
@@ -314,7 +332,7 @@ import type {
   CreateEventInput,
   ListEventsParams,
   EventOrderBy,
-  ProviderType
+  ProviderType,
 } from '@onecal/unified-calendar-api-node-sdk';
 ```
 

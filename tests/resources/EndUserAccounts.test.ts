@@ -77,7 +77,9 @@ describe('EndUserAccounts', () => {
 
       const result = await endUserAccounts.get('acc1');
 
-      expect(mockClient.get).toHaveBeenCalledWith('/api/v1/endUserAccounts/acc1');
+      expect(mockClient.get).toHaveBeenCalledWith(
+        '/api/v1/endUserAccounts/acc1'
+      );
       expect(result).toEqual(mockAccount);
     });
   });
@@ -93,7 +95,7 @@ describe('EndUserAccounts', () => {
       const mockResponse = { id: 'acc1', ...newAccount };
       mockClient.post.mockResolvedValue(mockResponse);
 
-      const result = await endUserAccounts.create(newAccount);
+      const result = await endUserAccounts.upsert(newAccount);
 
       expect(mockClient.post).toHaveBeenCalledWith(
         '/api/v1/endUserAccounts',
@@ -110,7 +112,9 @@ describe('EndUserAccounts', () => {
 
       const result = await endUserAccounts.delete('acc1');
 
-      expect(mockClient.delete).toHaveBeenCalledWith('/api/v1/endUserAccounts/acc1');
+      expect(mockClient.delete).toHaveBeenCalledWith(
+        '/api/v1/endUserAccounts/acc1'
+      );
       expect(result).toEqual(mockResponse);
     });
   });

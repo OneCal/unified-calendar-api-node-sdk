@@ -34,10 +34,10 @@ export class EndUserAccounts {
   }
 
   /**
-   * Create a new end user account with credentials
+   * Create or update an end user account with credentials.
    * @param data - End user account creation data
    */
-  async create(data: CreateEndUserAccountInput): Promise<EndUserAccount> {
+  async upsert(data: CreateEndUserAccountInput): Promise<EndUserAccount> {
     return this.client.post<EndUserAccount>(`/api/v1/endUserAccounts`, data);
   }
 
