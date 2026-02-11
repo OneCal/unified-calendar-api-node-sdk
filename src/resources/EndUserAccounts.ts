@@ -6,7 +6,7 @@ import { BaseClient } from '../client/BaseClient';
 import {
   EndUserAccount,
   EndUserAccountCredential,
-  CreateEndUserAccountInput,
+  UpsertEndUserAccountInput,
   ListEndUserAccountsParams,
   ListEndUserAccountsResponse,
 } from '../types';
@@ -37,7 +37,7 @@ export class EndUserAccounts {
    * Create or update an end user account with credentials.
    * @param data - End user account creation data
    */
-  async upsert(data: CreateEndUserAccountInput): Promise<EndUserAccount> {
+  async upsert(data: UpsertEndUserAccountInput): Promise<EndUserAccount> {
     return this.client.post<EndUserAccount>(`/api/v1/endUserAccounts`, data);
   }
 
