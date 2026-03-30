@@ -3,7 +3,7 @@
  */
 
 import { config } from 'dotenv';
-import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl, getConnectAppleUrl } from '../src';
+import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl, ProviderType } from '../src';
 
 config();
 
@@ -103,13 +103,17 @@ async function main() {
     });
     console.log(oauthUrl);
 
-    // Example: Get the URL for connecting an Apple iCloud account
+    // Example: Connect an Apple iCloud account
     // Apple uses app-specific passwords instead of OAuth.
     // Users generate these at https://appleid.apple.com
-    console.log('\nApple iCloud connect URL:');
-    const connectAppleUrl = getConnectAppleUrl('your-app-id');
-    console.log(connectAppleUrl);
-    // POST to this URL with { email, password, externalId? }
+    console.log('\nConnecting Apple iCloud account...');
+    const appleAccount = await client.endUserAccounts.upsert({
+      email: 'user@icloud.com',
+      password: 'xxxx-xxxx-xxxx-xxxx', // App-specific password
+      providerType: ProviderType.APPLE,
+      externalId: 'user-123',
+    });
+    console.log(`Connected Apple account: ${appleAccount.email} (${appleAccount.id})`);
 
   } catch (error: any) {
     console.error('\nError:', error.message);

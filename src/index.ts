@@ -18,9 +18,6 @@ export * from './utils/errors';
 // Export OAuth utilities
 export * from './oauth';
 
-// Export basic auth utilities
-export * from './basic-auth';
-
 // Export resource classes for advanced usage
 export { Calendars } from './resources/Calendars';
 export { Events } from './resources/Events';
