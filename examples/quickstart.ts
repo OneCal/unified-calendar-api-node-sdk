@@ -95,13 +95,24 @@ async function main() {
       }
     }
 
-    // Example: Get OAuth URL
+    // Example: Get OAuth URL (for Google and Microsoft)
     console.log('\nOAuth URL for Google:');
     const oauthUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
       redirectUrl: 'https://your-app.com/callback',
       externalId: 'user-123',
     });
     console.log(oauthUrl);
+
+    // Example: Connect an Apple iCloud account
+    // Apple uses app-specific passwords instead of OAuth.
+    // Users generate these at https://appleid.apple.com
+    console.log('\nConnecting Apple iCloud account...');
+    const appleAccount = await client.basicAuth.connect('your-app-id', 'apple', {
+      email: 'user@icloud.com',
+      password: 'xxxx-xxxx-xxxx-xxxx', // App-specific password
+      externalId: 'user-123',
+    });
+    console.log(`Connected Apple account: ${appleAccount.email} (${appleAccount.id})`);
 
   } catch (error: any) {
     console.error('\nError:', error.message);

@@ -24,3 +24,4 @@ export { Events } from './resources/Events';
 export { EndUserAccounts } from './resources/EndUserAccounts';
 export { FreeBusy } from './resources/FreeBusy';
 export { CalendarSubscriptions } from './resources/CalendarSubscriptions';
+export { BasicAuth } from './resources/BasicAuth';

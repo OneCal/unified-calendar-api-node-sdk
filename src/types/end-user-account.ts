@@ -53,11 +53,14 @@ export interface EndUserAccountCredential {
   /** ID of the end user account this credential belongs to */
   endUserAccountId: string;
 
-  /** OAuth access token for API calls */
-  accessToken: string;
+  /** OAuth access token for API calls (not present for Apple/basic auth providers) */
+  accessToken?: string | null;
 
   /** OAuth refresh token for obtaining new access tokens (null if not available) */
-  refreshToken: string | null;
+  refreshToken?: string | null;
+
+  /** Encrypted password for basic auth providers like Apple iCloud (null for OAuth providers) */
+  password?: string | null;
 
   /** Current status of the credential */
   status: EndUserAccountCredentialStatus;
@@ -76,8 +79,11 @@ export interface UpsertEndUserAccountInput {
   /** Email address of the end user */
   email: string;
 
-  /** OAuth refresh token obtained from the authorization flow */
-  refreshToken: string;
+  /** OAuth refresh token obtained from the authorization flow (required for GOOGLE and MICROSOFT) */
+  refreshToken?: string;
+
+  /** App-specific password for basic auth providers (required for APPLE) */
+  password?: string;
 
   /** Type of the provider (GOOGLE, MICROSOFT, or APPLE) */
   providerType: ProviderType;
@@ -87,6 +93,17 @@ export interface UpsertEndUserAccountInput {
 
   /** List of OAuth scopes that were authorized (optional) */
   authorizedScopes?: string[];
+}
+
+export interface ConnectAppleInput {
+  /** Apple ID email address */
+  email: string;
+
+  /** App-specific password generated at appleid.apple.com */
+  password: string;
+
+  /** Custom ID for the end user account if provided */
+  externalId?: string;
 }
 
 export interface ListEndUserAccountsParams {
