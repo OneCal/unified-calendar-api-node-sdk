@@ -22,12 +22,23 @@
       },
       "import": "./dist/oauth/index.js",
       "require": "./dist/oauth/index.cjs"
+    },
+    "./basic-auth": {
+      "types": {
+        "import": "./dist/basic-auth/index.d.ts",
+        "require": "./dist/basic-auth/index.d.cts"
+      },
+      "import": "./dist/basic-auth/index.js",
+      "require": "./dist/basic-auth/index.cjs"
     }
   },
   "typesVersions": {
     "*": {
       "oauth": [
         "./dist/oauth/index.d.ts"
+      ],
+      "basic-auth": [
+        "./dist/basic-auth/index.d.ts"
       ]
     }
   },

@@ -3,7 +3,7 @@
  */
 
 import { config } from 'dotenv';
-import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl } from '../src';
+import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl, getConnectAppleUrl } from '../src';
 
 config();
 
@@ -95,13 +95,21 @@ async function main() {
       }
     }
 
-    // Example: Get OAuth URL
+    // Example: Get OAuth URL (for Google and Microsoft)
     console.log('\nOAuth URL for Google:');
     const oauthUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
       redirectUrl: 'https://your-app.com/callback',
       externalId: 'user-123',
     });
     console.log(oauthUrl);
+
+    // Example: Get the URL for connecting an Apple iCloud account
+    // Apple uses app-specific passwords instead of OAuth.
+    // Users generate these at https://appleid.apple.com
+    console.log('\nApple iCloud connect URL:');
+    const connectAppleUrl = getConnectAppleUrl('your-app-id');
+    console.log(connectAppleUrl);
+    // POST to this URL with { email, password, externalId? }
 
   } catch (error: any) {
     console.error('\nError:', error.message);
