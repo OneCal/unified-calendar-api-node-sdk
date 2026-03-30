@@ -3,7 +3,7 @@
  */
 
 import { config } from 'dotenv';
-import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl, ProviderType } from '../src';
+import { UnifiedCalendarApi, EventOrderBy, getOAuthUrl } from '../src';
 
 config();
 
@@ -107,10 +107,9 @@ async function main() {
     // Apple uses app-specific passwords instead of OAuth.
     // Users generate these at https://appleid.apple.com
     console.log('\nConnecting Apple iCloud account...');
-    const appleAccount = await client.endUserAccounts.upsert({
+    const appleAccount = await client.basicAuth.connect('your-app-id', 'apple', {
       email: 'user@icloud.com',
       password: 'xxxx-xxxx-xxxx-xxxx', // App-specific password
-      providerType: ProviderType.APPLE,
       externalId: 'user-123',
     });
     console.log(`Connected Apple account: ${appleAccount.email} (${appleAccount.id})`);

@@ -8,6 +8,7 @@ import { Events } from '../resources/Events';
 import { EndUserAccounts } from '../resources/EndUserAccounts';
 import { FreeBusy } from '../resources/FreeBusy';
 import { CalendarSubscriptions } from '../resources/CalendarSubscriptions';
+import { BasicAuth } from '../resources/BasicAuth';
 import { UnifiedCalendarApiConfig } from '../types';
 
 /**
@@ -31,6 +32,9 @@ export class UnifiedCalendarApi {
   /** Calendar subscription operations */
   public readonly calendarSubscriptions: CalendarSubscriptions;
 
+  /** Basic auth operations (Apple iCloud) */
+  public readonly basicAuth: BasicAuth;
+
   /**
    * Create a new Unified Calendar API client
    * @param config - Configuration options
@@ -43,5 +47,6 @@ export class UnifiedCalendarApi {
     this.endUserAccounts = new EndUserAccounts(this.baseClient);
     this.freeBusy = new FreeBusy(this.baseClient);
     this.calendarSubscriptions = new CalendarSubscriptions(this.baseClient);
+    this.basicAuth = new BasicAuth(this.baseClient);
   }
 }
