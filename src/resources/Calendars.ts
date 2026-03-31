@@ -24,7 +24,7 @@ export class Calendars {
     params?: ListCalendarsParams
   ): Promise<PaginatedResponse<Calendar>> {
     const url = this.client.buildUrl(
-      `/api/v1/calendars/${endUserAccountId}`,
+      `/api/v1/calendars/${encodeURIComponent(endUserAccountId)}`,
       params
     );
     return this.client.get<PaginatedResponse<Calendar>>(url);
@@ -40,7 +40,7 @@ export class Calendars {
     calendarId: string
   ): Promise<Calendar> {
     return this.client.get<Calendar>(
-      `/api/v1/calendars/${endUserAccountId}/${calendarId}`
+      `/api/v1/calendars/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}`
     );
   }
 
@@ -54,7 +54,7 @@ export class Calendars {
     data: CreateCalendarInput
   ): Promise<Calendar> {
     return this.client.post<Calendar>(
-      `/api/v1/calendars/${endUserAccountId}`,
+      `/api/v1/calendars/${encodeURIComponent(endUserAccountId)}`,
       data
     );
   }
@@ -71,7 +71,7 @@ export class Calendars {
     data: UpdateCalendarInput
   ): Promise<Calendar> {
     return this.client.put<Calendar>(
-      `/api/v1/calendars/${endUserAccountId}/${calendarId}`,
+      `/api/v1/calendars/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}`,
       data
     );
   }
@@ -86,7 +86,7 @@ export class Calendars {
     calendarId: string
   ): Promise<{ success: boolean }> {
     return this.client.delete(
-      `/api/v1/calendars/${endUserAccountId}/${calendarId}`
+      `/api/v1/calendars/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}`
     );
   }
 }

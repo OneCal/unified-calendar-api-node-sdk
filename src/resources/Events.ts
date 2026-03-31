@@ -27,7 +27,7 @@ export class Events {
     params?: ListEventsParams
   ): Promise<PaginatedResponse<Event>> {
     const url = this.client.buildUrl(
-      `/api/v1/events/${endUserAccountId}/${calendarId}`,
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}`,
       params
     );
     return this.client.get<PaginatedResponse<Event>>(url);
@@ -45,7 +45,7 @@ export class Events {
     eventId: string
   ): Promise<Event> {
     return this.client.get<Event>(
-      `/api/v1/events/${endUserAccountId}/${calendarId}/${eventId}`
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}/${encodeURIComponent(eventId)}`
     );
   }
 
@@ -61,7 +61,7 @@ export class Events {
     data: CreateEventInput
   ): Promise<Event> {
     return this.client.post<Event>(
-      `/api/v1/events/${endUserAccountId}/${calendarId}`,
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}`,
       data
     );
   }
@@ -80,7 +80,7 @@ export class Events {
     data: UpdateEventInput
   ): Promise<Event> {
     return this.client.put<Event>(
-      `/api/v1/events/${endUserAccountId}/${calendarId}/${eventId}`,
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}/${encodeURIComponent(eventId)}`,
       data
     );
   }
@@ -97,7 +97,7 @@ export class Events {
     eventId: string
   ): Promise<{ success: boolean }> {
     return this.client.delete(
-      `/api/v1/events/${endUserAccountId}/${calendarId}/${eventId}`
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}/${encodeURIComponent(eventId)}`
     );
   }
 
@@ -115,7 +115,7 @@ export class Events {
     params?: ListEventsParams
   ): Promise<PaginatedResponse<Event>> {
     const url = this.client.buildUrl(
-      `/api/v1/events/${endUserAccountId}/${calendarId}/${eventId}/occurrences`,
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}/${encodeURIComponent(eventId)}/occurrences`,
       params
     );
     return this.client.get<PaginatedResponse<Event>>(url);
@@ -135,7 +135,7 @@ export class Events {
     data: RSVPInput
   ): Promise<Event> {
     return this.client.post<Event>(
-      `/api/v1/events/${endUserAccountId}/${calendarId}/${eventId}/rsvp`,
+      `/api/v1/events/${encodeURIComponent(endUserAccountId)}/${encodeURIComponent(calendarId)}/${encodeURIComponent(eventId)}/rsvp`,
       data
     );
   }
