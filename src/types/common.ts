@@ -39,8 +39,16 @@ export interface PaginationParams {
 export interface PaginatedResponse<T> {
   data: T[];
   pageToken?: string;
+
+  /** Pass this back as `pageToken` to fetch the next page. Absent on the last page. */
   nextPageToken?: string;
   syncToken?: string;
+
+  /**
+   * Present on the final page of a sync-enabled read. Pass it back as `syncToken`
+   * later to fetch only the events that have changed since (incremental sync).
+   */
+  nextSyncToken?: string;
 }
 
 export interface APIResponse<T> {
