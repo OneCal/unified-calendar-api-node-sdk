@@ -1,7 +1,7 @@
 {
   "name": "@apiroc/unified-calendar-api-node-sdk",
   "version": "2.0.0",
-  "description": "Official Node.js SDK for Apiroc Unified Calendar API - A type-safe client for managing calendars, events, and integrations across Google, Microsoft, and other providers",
+  "description": "Official Node.js SDK for Apiroc Unified Calendar API - A type-safe client for managing calendars, events, and integrations across Google, Microsoft, iCloud and other providers",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
