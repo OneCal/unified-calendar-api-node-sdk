@@ -18,7 +18,10 @@ describe('CalendarSubscriptions', () => {
       buildUrl: vi.fn((path, params) => {
         if (!params) return path;
         const queryString = new URLSearchParams(
-          Object.entries(params).map(([k, v]) => [k, String(v)])
+          Object.entries(params).map(([k, v]): [string, string] => [
+            k,
+            String(v),
+          ])
         ).toString();
         return `${path}?${queryString}`;
       }),
