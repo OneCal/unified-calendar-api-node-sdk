@@ -100,7 +100,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
         testCalendarId,
         {
           title: 'SDK Integration Test Event',
-          description: 'Created by OneCal SDK integration test',
+          description: 'Created by Apiroc SDK integration test',
           start: {
             dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
             timeZone: 'UTC',

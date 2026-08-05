@@ -1,6 +1,6 @@
-# OneCal Unified Calendar API - Node.js SDK
+# Apiroc Unified Calendar API - Node.js SDK
 
-Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://docs.apiroc.com). Manage calendars, events, and integrations across Google Calendar, Microsoft Outlook, and other providers with a single, unified interface.
+Official Node.js/TypeScript SDK for the [Apiroc Unified Calendar API](https://docs.apiroc.com). Manage calendars, events, and integrations across Google Calendar, Microsoft Outlook, and other providers with a single, unified interface.
 
 ## Features
 
@@ -14,25 +14,25 @@ Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://do
 ## Installation
 
 ```bash
-npm install @onecal/unified-calendar-api-node-sdk
+npm install @apiroc/unified-calendar-api-node-sdk
 ```
 
 Or using yarn:
 
 ```bash
-yarn add @onecal/unified-calendar-api-node-sdk
+yarn add @apiroc/unified-calendar-api-node-sdk
 ```
 
 Or using pnpm:
 
 ```bash
-pnpm add @onecal/unified-calendar-api-node-sdk
+pnpm add @apiroc/unified-calendar-api-node-sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import { UnifiedCalendarApi } from '@onecal/unified-calendar-api-node-sdk';
+import { UnifiedCalendarApi } from '@apiroc/unified-calendar-api-node-sdk';
 
 // Initialize the client
 const client = new UnifiedCalendarApi({
@@ -269,7 +269,7 @@ await client.calendarSubscriptions.delete('endUserAccountId', 'subscriptionId');
 Generate OAuth authorization URLs for connecting user calendars.
 
 ```typescript
-import { getOAuthUrl } from '@onecal/unified-calendar-api-node-sdk/oauth';
+import { getOAuthUrl } from '@apiroc/unified-calendar-api-node-sdk/oauth';
 
 // Get OAuth URL for Google
 const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
@@ -301,7 +301,7 @@ import {
   AuthorizationError,
   NotFoundError,
   RateLimitError,
-} from '@onecal/unified-calendar-api-node-sdk';
+} from '@apiroc/unified-calendar-api-node-sdk';
 
 try {
   const event = await client.events.get('accountId', 'calendarId', 'eventId');
@@ -333,7 +333,7 @@ import type {
   ListEventsParams,
   EventOrderBy,
   ProviderType,
-} from '@onecal/unified-calendar-api-node-sdk';
+} from '@apiroc/unified-calendar-api-node-sdk';
 ```
 
 ## Examples
@@ -374,7 +374,7 @@ npm run dev
 
 ## Links
 
-- [OneCal Unified API Website](https://www.onecal.io/unified-calendar-api)
+- [Apiroc Unified API Website](https://www.apiroc.com)
 - [API Documentation](https://docs.apiroc.com)
-- [NPM Package](https://www.npmjs.com/package/@onecal/unified-calendar-api-node-sdk)
-- [GitHub Repository](https://github.com/onecal-unified/unified-calendar-api-node-sdk)
+- [NPM Package](https://www.npmjs.com/package/@apiroc/unified-calendar-api-node-sdk)
+- [GitHub Repository](https://github.com/OneCal/unified-calendar-api-node-sdk)

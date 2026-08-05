@@ -4,7 +4,7 @@
 
 /**
  * Get OAuth authorization URL
- * @param appId - Your OneCal application ID
+ * @param appId - Your Apiroc application ID
  * @param provider - The provider type (GOOGLE or MICROSOFT)
  * @param params - OAuth parameters
  * @returns The OAuth authorization URL

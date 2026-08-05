@@ -10,7 +10,7 @@ export class BasicAuth {
 
   /**
    * Connect an Apple iCloud account using basic auth (app-specific password)
-   * @param appId - Your OneCal application ID
+   * @param appId - Your Apiroc application ID
    * @param provider - The basic auth provider (currently only 'apple')
    * @param data - Connection data including email and app-specific password
    */

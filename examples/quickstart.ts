@@ -27,7 +27,9 @@ async function main() {
 
     if (accounts.data.length > 0) {
       const firstAccount = accounts.data[0];
-      console.log(`\nFirst account: ${firstAccount.email} (${firstAccount.id})`);
+      console.log(
+        `\nFirst account: ${firstAccount.email} (${firstAccount.id})`
+      );
 
       // Example: List calendars for the first account
       console.log('\nListing calendars...');
@@ -36,7 +38,9 @@ async function main() {
 
       if (calendars.data && calendars.data.length > 0) {
         const firstCalendar = calendars.data[0];
-        console.log(`First calendar: ${firstCalendar.name} (${firstCalendar.id})`);
+        console.log(
+          `First calendar: ${firstCalendar.name} (${firstCalendar.id})`
+        );
 
         // Example: List events in the first calendar
         console.log('\nListing events...');
@@ -64,13 +68,17 @@ async function main() {
           firstCalendar.id,
           {
             title: 'SDK Test Event',
-            description: 'Created via OneCal Node.js SDK',
+            description: 'Created via Apiroc Node.js SDK',
             start: {
-              dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Tomorrow
+              dateTime: new Date(
+                Date.now() + 24 * 60 * 60 * 1000
+              ).toISOString(), // Tomorrow
               timeZone: 'UTC',
             },
             end: {
-              dateTime: new Date(Date.now() + 25 * 60 * 60 * 1000).toISOString(), // Tomorrow + 1 hour
+              dateTime: new Date(
+                Date.now() + 25 * 60 * 60 * 1000
+              ).toISOString(), // Tomorrow + 1 hour
               timeZone: 'UTC',
             },
             attendees: [
@@ -107,13 +115,18 @@ async function main() {
     // Apple uses app-specific passwords instead of OAuth.
     // Users generate these at https://appleid.apple.com
     console.log('\nConnecting Apple iCloud account...');
-    const appleAccount = await client.basicAuth.connect('your-app-id', 'apple', {
-      email: 'user@icloud.com',
-      password: 'xxxx-xxxx-xxxx-xxxx', // App-specific password
-      externalId: 'user-123',
-    });
-    console.log(`Connected Apple account: ${appleAccount.email} (${appleAccount.id})`);
-
+    const appleAccount = await client.basicAuth.connect(
+      'your-app-id',
+      'apple',
+      {
+        email: 'user@icloud.com',
+        password: 'xxxx-xxxx-xxxx-xxxx', // App-specific password
+        externalId: 'user-123',
+      }
+    );
+    console.log(
+      `Connected Apple account: ${appleAccount.email} (${appleAccount.id})`
+    );
   } catch (error: any) {
     console.error('\nError:', error.message);
     if (error.status) {
