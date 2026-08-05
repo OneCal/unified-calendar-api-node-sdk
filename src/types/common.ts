@@ -9,7 +9,7 @@ export interface UnifiedCalendarApiConfig {
   apiKey: string;
 
   /**
-   * Base URL for the API (default: https://api.onecalunified.com)
+   * Base URL for the API (default: https://api.apiroc.com)
    */
   unifiedApiBaseUrl?: string;
 

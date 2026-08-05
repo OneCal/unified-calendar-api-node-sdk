@@ -8,7 +8,7 @@
  * @param provider - The provider type (GOOGLE or MICROSOFT)
  * @param params - OAuth parameters
  * @returns The OAuth authorization URL
- * 
+ *
  */
 export function getOAuthUrl(
   appId: string,
@@ -22,7 +22,7 @@ export function getOAuthUrl(
     unifiedApiBaseUrl?: string;
   }
 ): string {
-  const baseUrl = params?.unifiedApiBaseUrl || 'https://api.onecalunified.com';
+  const baseUrl = params?.unifiedApiBaseUrl || 'https://api.apiroc.com';
   const queryParams = new URLSearchParams();
 
   if (params?.redirectUrl)

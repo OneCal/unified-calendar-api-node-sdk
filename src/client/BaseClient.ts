@@ -26,8 +26,7 @@ export class BaseClient {
     }
 
     this.config = {
-      unifiedApiBaseUrl:
-        config.unifiedApiBaseUrl || 'https://api.onecalunified.com',
+      unifiedApiBaseUrl: config.unifiedApiBaseUrl || 'https://api.apiroc.com',
       timeout: config.timeout || 30000,
       ...config,
     };

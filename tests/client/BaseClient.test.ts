@@ -5,9 +5,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import axios from 'axios';
 import { BaseClient } from '../../src/client/BaseClient';
-import {
-  UnifiedCalendarApiError,
-} from '../../src/utils/errors';
+import { UnifiedCalendarApiError } from '../../src/utils/errors';
 
 vi.mock('axios');
 
@@ -33,13 +31,17 @@ describe('BaseClient', () => {
 
   describe('constructor', () => {
     it('should throw error if API key is not provided', () => {
-      expect(() => new BaseClient({ apiKey: '' })).toThrow(UnifiedCalendarApiError);
-      expect(() => new BaseClient({ apiKey: '' })).toThrow('API key is required');
+      expect(() => new BaseClient({ apiKey: '' })).toThrow(
+        UnifiedCalendarApiError
+      );
+      expect(() => new BaseClient({ apiKey: '' })).toThrow(
+        'API key is required'
+      );
     });
 
     it('should create axios instance with correct config', () => {
       expect(axios.create).toHaveBeenCalledWith({
-        baseURL: 'https://api.onecalunified.com',
+        baseURL: 'https://api.apiroc.com',
         timeout: 30000,
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +96,11 @@ describe('BaseClient', () => {
 
       const result = await client.post('/test', postData);
 
-      expect(mockAxiosInstance.post).toHaveBeenCalledWith('/test', postData, undefined);
+      expect(mockAxiosInstance.post).toHaveBeenCalledWith(
+        '/test',
+        postData,
+        undefined
+      );
       expect(result).toEqual(mockData);
     });
 
@@ -105,7 +111,11 @@ describe('BaseClient', () => {
 
       const result = await client.put('/test/123', putData);
 
-      expect(mockAxiosInstance.put).toHaveBeenCalledWith('/test/123', putData, undefined);
+      expect(mockAxiosInstance.put).toHaveBeenCalledWith(
+        '/test/123',
+        putData,
+        undefined
+      );
       expect(result).toEqual(mockData);
     });
 
@@ -115,7 +125,10 @@ describe('BaseClient', () => {
 
       const result = await client.delete('/test/123');
 
-      expect(mockAxiosInstance.delete).toHaveBeenCalledWith('/test/123', undefined);
+      expect(mockAxiosInstance.delete).toHaveBeenCalledWith(
+        '/test/123',
+        undefined
+      );
       expect(result).toEqual(mockData);
     });
   });

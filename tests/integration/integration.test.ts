@@ -6,7 +6,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { UnifiedCalendarApi, EventOrderBy } from '../../src';
 
 describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
-// describe('UnifiedCalendarApi SDK Integration Tests', () => {
+  // describe('UnifiedCalendarApi SDK Integration Tests', () => {
   let client: UnifiedCalendarApi;
   let testAccountId: string;
   let testCalendarId: string;
@@ -18,10 +18,10 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
     if (!apiKey) {
       throw new Error('UNIFIED_API_KEY environment variable is required');
     }
-    
-    client = new UnifiedCalendarApi({ 
-      apiKey, 
-      unifiedApiBaseUrl: baseURL || 'https://api.onecalunified.com',
+
+    client = new UnifiedCalendarApi({
+      apiKey,
+      unifiedApiBaseUrl: baseURL || 'https://api.apiroc.com',
     });
   });
 
@@ -30,7 +30,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
       const result = await client.endUserAccounts.list({ limit: 10 });
       expect(result).toHaveProperty('data');
       expect(Array.isArray(result.data)).toBe(true);
-      
+
       if (result.data.length > 0) {
         testAccountId = result.data[0].id;
       }
@@ -38,7 +38,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
 
     it('should get a specific account', async () => {
       if (!testAccountId) return;
-      
+
       const account = await client.endUserAccounts.get(testAccountId);
       expect(account).toHaveProperty('id', testAccountId);
       expect(account).toHaveProperty('email');
@@ -46,8 +46,9 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
 
     it('should get account credentials', async () => {
       if (!testAccountId) return;
-      
-      const credentials = await client.endUserAccounts.getCredentials(testAccountId);
+
+      const credentials =
+        await client.endUserAccounts.getCredentials(testAccountId);
       expect(credentials).toHaveProperty('endUserAccountId', testAccountId);
       expect(credentials).toHaveProperty('status');
     });
@@ -56,11 +57,11 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
   describe('Calendars', () => {
     it('should list calendars', async () => {
       if (!testAccountId) return;
-      
+
       const result = await client.calendars.list(testAccountId);
       expect(result).toHaveProperty('data');
       expect(Array.isArray(result.data)).toBe(true);
-      
+
       if (result.data && result.data.length > 0) {
         testCalendarId = result.data[0].id;
       }
@@ -68,8 +69,11 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
 
     it('should get a specific calendar', async () => {
       if (!testAccountId || !testCalendarId) return;
-      
-      const calendar = await client.calendars.get(testAccountId, testCalendarId);
+
+      const calendar = await client.calendars.get(
+        testAccountId,
+        testCalendarId
+      );
       expect(calendar).toHaveProperty('id', testCalendarId);
       expect(calendar).toHaveProperty('name');
     });
@@ -78,7 +82,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
   describe('Events', () => {
     it('should list events', async () => {
       if (!testAccountId || !testCalendarId) return;
-      
+
       const result = await client.events.list(testAccountId, testCalendarId, {
         pageSize: 10,
         orderBy: EventOrderBy.START_TIME,
@@ -89,25 +93,29 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
 
     it('should create, update, and delete an event', async () => {
       if (!testAccountId || !testCalendarId) return;
-      
+
       // Create
-      const newEvent = await client.events.create(testAccountId, testCalendarId, {
-        title: 'SDK Integration Test Event',
-        description: 'Created by OneCal SDK integration test',
-        start: {
-          dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-          timeZone: 'UTC',
-        },
-        end: {
-          dateTime: new Date(Date.now() + 25 * 60 * 60 * 1000).toISOString(),
-          timeZone: 'UTC',
-        },
-      });
+      const newEvent = await client.events.create(
+        testAccountId,
+        testCalendarId,
+        {
+          title: 'SDK Integration Test Event',
+          description: 'Created by OneCal SDK integration test',
+          start: {
+            dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+            timeZone: 'UTC',
+          },
+          end: {
+            dateTime: new Date(Date.now() + 25 * 60 * 60 * 1000).toISOString(),
+            timeZone: 'UTC',
+          },
+        }
+      );
       expect(newEvent).toHaveProperty('id');
       expect(newEvent.title).toBe('SDK Integration Test Event');
-      
+
       const eventId = newEvent.id;
-      
+
       // Update
       const updatedEvent = await client.events.update(
         testAccountId,
@@ -125,7 +133,7 @@ describe.skip('UnifiedCalendarApi SDK Integration Tests', () => {
   describe('Free/Busy', () => {
     it('should get free/busy information', async () => {
       if (!testAccountId || !testCalendarId) return;
-      
+
       const result = await client.freeBusy.get(testAccountId, {
         startDateTime: new Date(),
         endDateTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),

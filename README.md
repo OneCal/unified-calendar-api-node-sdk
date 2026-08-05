@@ -1,6 +1,6 @@
 # OneCal Unified Calendar API - Node.js SDK
 
-Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://docs.onecalunified.com). Manage calendars, events, and integrations across Google Calendar, Microsoft Outlook, and other providers with a single, unified interface.
+Official Node.js/TypeScript SDK for the [OneCal Unified Calendar API](https://docs.apiroc.com). Manage calendars, events, and integrations across Google Calendar, Microsoft Outlook, and other providers with a single, unified interface.
 
 ## Features
 
@@ -64,7 +64,7 @@ console.log(`Created event: ${event.title}`);
 ```typescript
 const client = new UnifiedCalendarApi({
   apiKey: 'your-api-key', // Required: Your Unified Calendar API key
-  unifiedApiBaseUrl: 'https://api.onecalunified.com', // Optional: API base URL
+  unifiedApiBaseUrl: 'https://api.apiroc.com', // Optional: API base URL
   timeout: 30000, // Optional: Request timeout in ms
   debug: false, // Optional: Enable debug logging
 });
@@ -276,7 +276,7 @@ const googleUrl = getOAuthUrl('your-app-id', 'GOOGLE', {
   redirectUrl: 'https://your-app.com/callback',
   externalId: 'user-123',
   loginHint: 'user@example.com',
-  unifiedApiBaseUrl: 'https://api.onecalunified.com', // Optional: defaults to production
+  unifiedApiBaseUrl: 'https://api.apiroc.com', // Optional: defaults to production
 });
 
 // Get OAuth URL for Microsoft
@@ -369,12 +369,12 @@ npm run dev
 
 ## Support
 
-- 📧 Email: contact@onecalunified.com
-- 📚 Documentation: https://docs.onecalunified.com
+- 📧 Email: contact@apiroc.com
+- 📚 Documentation: https://docs.apiroc.com
 
 ## Links
 
 - [OneCal Unified API Website](https://www.onecal.io/unified-calendar-api)
-- [API Documentation](https://docs.onecalunified.com)
+- [API Documentation](https://docs.apiroc.com)
 - [NPM Package](https://www.npmjs.com/package/@onecal/unified-calendar-api-node-sdk)
 - [GitHub Repository](https://github.com/onecal-unified/unified-calendar-api-node-sdk)

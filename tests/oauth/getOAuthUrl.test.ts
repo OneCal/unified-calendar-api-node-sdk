@@ -8,13 +8,15 @@ import { getOAuthUrl } from '../../src/oauth/getOAuthUrl';
 describe('getOAuthUrl', () => {
   it('should generate Google OAuth URL', () => {
     const url = getOAuthUrl('app123', 'GOOGLE');
-    expect(url).toBe('https://api.onecalunified.com/api/v1/oauth/authorize/app123/google');
+    expect(url).toBe(
+      'https://api.apiroc.com/api/v1/oauth/authorize/app123/google'
+    );
   });
 
   it('should generate Microsoft OAuth URL', () => {
     const url = getOAuthUrl('app123', 'MICROSOFT');
     expect(url).toBe(
-      'https://api.onecalunified.com/api/v1/oauth/authorize/app123/microsoft'
+      'https://api.apiroc.com/api/v1/oauth/authorize/app123/microsoft'
     );
   });
 
@@ -68,6 +70,8 @@ describe('getOAuthUrl', () => {
     const url = getOAuthUrl('app123', 'GOOGLE', {
       unifiedApiBaseUrl: 'https://custom.api.com',
     });
-    expect(url).toBe('https://custom.api.com/api/v1/oauth/authorize/app123/google');
+    expect(url).toBe(
+      'https://custom.api.com/api/v1/oauth/authorize/app123/google'
+    );
   });
 });
