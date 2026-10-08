@@ -6,6 +6,7 @@ export enum ProviderType {
   GOOGLE = 'GOOGLE',
   MICROSOFT = 'MICROSOFT',
   APPLE = 'APPLE',
+  CALDAV = 'CALDAV',
 }
 
 export enum EndUserAccountCredentialStatus {
@@ -18,8 +19,11 @@ export interface EndUserAccount {
   /** Unique identifier for the end user account */
   id: string;
 
-  /** Email address of the end user */
+  /** Email address of the end user (for CALDAV, the server login, which may be a plain username) */
   email: string;
+
+  /** The CalDAV server URL for CALDAV accounts; null for other providers */
+  serverUrl?: string | null;
 
   /** Custom ID for the end user account if provided */
   externalId?: string | null;
@@ -53,13 +57,13 @@ export interface EndUserAccountCredential {
   /** ID of the end user account this credential belongs to */
   endUserAccountId: string;
 
-  /** OAuth access token for API calls (not present for Apple/basic auth providers) */
+  /** OAuth access token for API calls (not present for Apple/CalDAV basic auth providers) */
   accessToken?: string | null;
 
   /** OAuth refresh token for obtaining new access tokens (null if not available) */
   refreshToken?: string | null;
 
-  /** Encrypted password for basic auth providers like Apple iCloud (null for OAuth providers) */
+  /** Encrypted password for basic auth providers like Apple iCloud and CalDAV (null for OAuth providers) */
   password?: string | null;
 
   /** Current status of the credential */
@@ -82,10 +86,13 @@ export interface UpsertEndUserAccountInput {
   /** OAuth refresh token obtained from the authorization flow (required for GOOGLE and MICROSOFT) */
   refreshToken?: string;
 
-  /** App-specific password for basic auth providers (required for APPLE) */
+  /** App-specific password for basic auth providers (required for APPLE and CALDAV) */
   password?: string;
 
-  /** Type of the provider (GOOGLE, MICROSOFT, or APPLE) */
+  /** The CalDAV server URL, e.g. https://caldav.fastmail.com (required for CALDAV) */
+  serverUrl?: string;
+
+  /** Type of the provider (GOOGLE, MICROSOFT, APPLE or CALDAV) */
   providerType: ProviderType;
 
   /** Custom ID for the end user account if provided */
@@ -100,6 +107,23 @@ export interface ConnectAppleInput {
   email: string;
 
   /** App-specific password generated at appleid.apple.com */
+  password: string;
+
+  /** Custom ID for the end user account if provided */
+  externalId?: string;
+}
+
+export interface ConnectCalDavInput {
+  /**
+   * The CalDAV server URL, e.g. https://caldav.fastmail.com. If no scheme is
+   * given, https:// is assumed. Calendars are discovered automatically.
+   */
+  serverUrl: string;
+
+  /** Login for the CalDAV server: usually an email address, sometimes a plain username */
+  email: string;
+
+  /** Password for the CalDAV server, usually an app-specific password */
   password: string;
 
   /** Custom ID for the end user account if provided */
